@@ -1,20 +1,39 @@
 #include <iostream>
 using namespace std;
-
-int main() {
-    int simple[58]={2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271};
-    int count[58]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-    int num = 890;
-    for(int i =0;i<=57;i++){
-        if (num % simple[i] == 0){
-            num/=simple[i];
-            count[i]++;
-            i=-1;
-            cout<<num<<endl;
+int prime(int pr,int arr[]){
+    for (int i=arr[0];i>0;i--){
+        if(pr%arr[i]==0){
+            pr=prime(pr+2,arr);
         }
     }
-    for(int i =0;i<=57;i++){
-        cout << simple[i]<<":"<< count[i] << endl;
+    arr[0]++;
+    arr[arr[0]]=pr;
+    return pr;
+}
+
+int main() {
+    int pArr[99]={2,2,3};
+    int count[99]={
+    };
+    int num = 13;
+    while (pArr[pArr[0]]<num/2){
+        prime(pArr[pArr[0]]+2,pArr);
+        
+    }
+    for(int i=1;num!=1;i++){
+        if (num %pArr[i] == 0){
+            cout<<num;
+            num/=pArr[i];
+            cout<<"/"<<pArr[i]<<"="<<num<<endl;
+            count[i]++;
+            i=0;
+            
+        }
+    }
+    for(int i =1;i<=99;i++){
+        if (count[i]>0){
+            cout << pArr[i]<<":"<< count[i] << endl;
+        }
     }
     return 0;
 }

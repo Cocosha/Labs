@@ -5,35 +5,48 @@ using namespace std;
 
 int main() {
 srand(time(0));
-    int p = 10;
+    unsigned int p = 10;
     int r1 = 0;
     int r2 = 100;
-    int idMax = 0;
-    int idMin = 0;
+    int buf;
+    int max = -2147483647;
+    int min = 2147483647;
     double nlist[75]={};
+
+//Input and validate
     cout<<"P : ";
     cin>>p;
-    p=(p<10)?10:(p>75)?75:p;
+    p=(cin.fail())?10:(p<10)?10:(p>75)?75:p;
+    cin.clear();
+    cin.ignore();
     cout<<endl<<"R1 : ";
     cin>>r1;
+    r1=(cin.fail())?0:r1;
+    cin.clear();
+    cin.ignore();
     cout<<endl<<"R2 : ";
     cin>>r2;
+    r2=(cin.fail())?0:r2;
+    cin.clear();
+    cin.ignore();
 
+//swap min and max
     if (r1>r2){
     r1=r1+r2; 
     r2=r1-r2; 
     r1=r1-r2;
-
     }
+
+//Output
     for (int i=0; i<p;   i++){
         int randomNum = rand() % (r2-r1+1)+r1;
-        nlist[i] = randomNum+randomNum/RAND_MAX;
-        if (randomNum>nlist[idMax]){idMax=i;};
-        if (randomNum<nlist[idMin]){idMin=i;};
-        cout<<" | "<<nlist[i];
+        buf = randomNum+randomNum/RAND_MAX;
+        max=(buf>max)?buf:max;
+        min=(buf<min)?buf:min;
+        cout<<" | "<<buf;
     }
-    cout<<endl<<"max : "<<nlist[idMax];
-    cout<<endl<<"min : "<<nlist[idMin];
+    cout<<endl<<"max : "<<max;
+    cout<<endl<<"min : "<<min;
     return 0;
 
     

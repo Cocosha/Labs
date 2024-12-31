@@ -1,15 +1,15 @@
 #include <iostream>
 using namespace std;
-int prime(int pr,int arr[]){
-    for (int i=arr[0];i>0;i--){
-        if(pr%arr[i]==0){
-            pr=prime(pr+2,arr);
-        }
-    }
-    arr[0]++;
-    arr[arr[0]]=pr;
-    return pr;
-}
+// int prime(int prm,int pArr[]){
+//     for (int i=pArr[0];i>0;i--){
+//         if(prm%pArr[i]==0){
+//             prm=prime(prm+2,pArr);
+//         }
+//     }
+//     pArr[0]++;
+//     pArr[pArr[0]]=prm;
+//     return prm;
+// }
 
 int main() {
     int pArr[99]={2,2,3};
@@ -18,8 +18,17 @@ int main() {
     cout<<"Введіть число"<<endl;
     cin>>num;
     if(cin.fail()){cin.ignore();num=10;}
+    int prm = 3;
     while (pArr[pArr[0]]<num){
-        prime(pArr[pArr[0]]+2,pArr);
+        for (int i=pArr[0];i>0;i--)
+        {
+            if(prm%pArr[i]==0)
+            {
+                prm+=2;
+            }
+        }
+    pArr[0]++;
+    pArr[pArr[0]]=prm;
         
     }
     for(int i=1;num!=1;i++){

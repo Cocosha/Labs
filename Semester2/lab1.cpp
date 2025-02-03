@@ -71,14 +71,15 @@ void txtToNum(char *txt, ofstream& out){
         }
         if(txt[i]==')'){
             base=txt[i-1]-'0';
-            ia=i+2;
             num = verify(num,base);
             cout<<" = "<<num;
             out<<" = ";
             out<<num;
             num=0;
         }
-        
+        if(txt[i]=='\n'){
+            ia=i+1;
+        }
         i++;
     }
     out.close();
